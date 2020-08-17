@@ -8,7 +8,6 @@
   </head>
   <body>
     <div id="app">
-
       <section class="row">
         <!-- healthbar player -->
         <div class="small-6 columns">
@@ -17,7 +16,10 @@
             <div
               class="healthbar text-center"
               style="background-color: green; margin: 0; color: white;"
-            ></div>
+              :style="{width:playerHealth+'%'}"
+            >
+              {{playerHealth}}
+            </div>
           </div>
         </div>
 
@@ -28,38 +30,39 @@
             <div
               class="healthbar text-center"
               style="background-color: green; margin: 0; color: white;"
-            ></div>
+              :style="{width:monsterHealth+'%'}"
+            >
+              {{monsterHealth}}
+            </div>
           </div>
         </div>
-
       </section>
-      
-      <section class="row controls">
-          <!-- start new game button -->
+
+      <section class="row controls" v-if="!gameIsRunning">
+        <!-- start new game button -->
         <div class="small-12 columns">
-          <button id="start-game">START NEW GAME</button>
+          <button id="start-game" @click="startGame()">START NEW GAME</button>
         </div>
       </section>
 
-      <section class="row controls">
-          <!-- action buttons -->
+      <section class="row controls" v-else>
+        <!-- action buttons -->
         <div class="small-12 columns">
-          <button id="attack">ATTACK</button>
-          <button id="special-attack">SPECIAL ATTACK</button>
-          <button id="heal">HEAL</button>
-          <button id="give-up">GIVE UP</button>
+          <button id="attack" @click="attack()">ATTACK</button>
+          <button id="special-attack" @click="specialAttack()">SPECIAL ATTACK</button>
+          <button id="heal" @click="heal()">HEAL</button>
+          <button id="give-up" @click="giveUp()">GIVE UP</button>
         </div>
       </section>
-      
+
       <section class="row log">
-          <!-- result of your action -->
+        <!-- result of your action -->
         <div class="small-12 columns">
           <ul>
             <li></li>
           </ul>
         </div>
       </section>
-
     </div>
     <script src="js/app.js"></script>
   </body>
