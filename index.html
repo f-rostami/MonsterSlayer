@@ -49,17 +49,24 @@
         <!-- action buttons -->
         <div class="small-12 columns">
           <button id="attack" @click="attack()">ATTACK</button>
-          <button id="special-attack" @click="specialAttack()">SPECIAL ATTACK</button>
+          <button id="special-attack" @click="specialAttack()">
+            SPECIAL ATTACK
+          </button>
           <button id="heal" @click="heal()">HEAL</button>
           <button id="give-up" @click="giveUp()">GIVE UP</button>
         </div>
       </section>
 
-      <section class="row log">
+      <section class="row log" v-if="turns.length >0">
         <!-- result of your action -->
         <div class="small-12 columns">
           <ul>
-            <li></li>
+            <li
+              v-for="turn in turns"
+              :class="{'player-turn':turn.isPlayer,'monster-turn':!turn.isPlayer}"
+            >
+              {{ turn.text}}
+            </li>
           </ul>
         </div>
       </section>
